@@ -1,0 +1,97 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--background);
+    color: var(--text);
+    font-family: 'Segoe UI',sans-serif;
+}
+
+.app {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+
+.sidebar {
+    width: 270px;
+    background: white;
+    border-right: 1px solid var(--border);
+    padding: 30px;
+}
+
+.logo {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 45px;
+}
+
+    .logo h2 {
+        margin: 0;
+        color: var(--accent);
+    }
+
+    .logo span {
+        font-size: 13px;
+        color: #888;
+    }
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #444;
+    padding: 14px;
+    border-radius: 12px;
+    transition: .25s;
+    font-weight: 500;
+}
+
+    .sidebar a:hover {
+        background: var(--secondary);
+        color: var(--accent);
+    }
+
+/* Main */
+
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Topbar */
+
+.topbar {
+    height: 80px;
+    background: white;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+}
+
+    .topbar h3 {
+        margin: 0;
+    }
+
+    .topbar span {
+        color: #777;
+        font-size: 14px;
+    }
+
+/* Content */
+
+.content {
+    padding: 40px;
+}

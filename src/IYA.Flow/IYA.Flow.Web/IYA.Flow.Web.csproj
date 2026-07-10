@@ -16,7 +16,6 @@
     <Folder Include="Extensions\" />
     <Folder Include="Middleware\" />
     <Folder Include="Helpers\" />
-    <Folder Include="wwroot\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
 
