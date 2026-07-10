@@ -1,3 +1,6 @@
 <Solution>
+  <Project Path="IYA.Flow.Application/IYA.Flow.Application.csproj" Id="208d122a-e286-4516-b9f3-b90577b991e4" />
   <Project Path="IYA.Flow.Core/IYA.Flow.Core.csproj" />
+  <Project Path="IYA.Flow.Infrastructure/IYA.Flow.Infrastructure.csproj" Id="127c1be3-bacf-4be5-b5d8-40ad3ce21839" />
+  <Project Path="IYA.Flow.Web/IYA.Flow.Web.csproj" Id="da437ea1-27b6-40c8-b19b-4fdd4f1ea346" />
 </Solution>
