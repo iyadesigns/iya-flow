@@ -1,0 +1,14 @@
+﻿@model IEnumerable<IYA.Flow.Core.Entities.Workspace>
+
+<h1>Workspaces</h1>
+
+<a asp-action="Create" class="btn btn-primary">
+    Nuevo Workspace
+</a>
+
+@foreach (var workspace in Model)
+{
+    <div>
+        <strong>@workspace.Name</strong>
+    </div>
+}

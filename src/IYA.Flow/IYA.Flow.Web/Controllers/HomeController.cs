@@ -15,7 +15,8 @@ namespace IYA.Flow.Web.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            //return View();
+            return RedirectToAction("Index", "Workspace");
         }
 
         public IActionResult Privacy()

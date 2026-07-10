@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using IYA.Flow.Core.Entities;
+using Microsoft.EntityFrameworkCore;
 
-namespace IYA.Flow.Infrastructure.Persistence
+namespace IYA.Flow.Infrastructure.Persistence;
+
+public class IYAFlowDbContext : DbContext
 {
-    internal class IYAFlowDbContext
+    public IYAFlowDbContext(DbContextOptions<IYAFlowDbContext> options)
+        : base(options)
     {
     }
+
+    public DbSet<Workspace> Workspaces => Set<Workspace>();
 }
