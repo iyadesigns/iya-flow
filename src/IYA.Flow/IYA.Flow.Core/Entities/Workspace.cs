@@ -1,20 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using IYA.Flow.Core.Constants;
 
 namespace IYA.Flow.Core.Entities;
 
+/// <summary>
+/// Represents a workspace within the application.
+/// </summary>
 public class Workspace : BaseEntity
 {
+    /// <summary>
+    /// Workspace name.
+    /// </summary>
     public string Name { get; set; } = string.Empty;
 
+    /// <summary>
+    /// Workspace description.
+    /// </summary>
     public string Description { get; set; } = string.Empty;
 
-    public string Color { get; set; } = "#F7B7D3";
+    /// <summary>
+    /// Main workspace color.
+    /// </summary>
+    public string Color { get; set; } = WorkspaceDefaults.DefaultColor;
 
-    public string Icon { get; set; } = "🦋";
+    /// <summary>
+    /// Lucide icon name.
+    /// </summary>
+    public string Icon { get; set; } = WorkspaceDefaults.DefaultIcon;
 
+    /// <summary>
+    /// Indicates whether the workspace is marked as favorite.
+    /// </summary>
     public bool IsFavorite { get; set; }
 }

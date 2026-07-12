@@ -1,14 +1,83 @@
-﻿@model IEnumerable<IYA.Flow.Core.Entities.Workspace>
+﻿@model IEnumerable<IYA.Flow.Application.DTOs.Workspace.WorkspaceDto>
 
-<h1>Workspaces</h1>
+@{
+    ViewData["Title"] = "Workspaces";
+}
 
-<a asp-action="Create" class="btn btn-primary">
-    Nuevo Workspace
-</a>
+<div class="d-flex justify-content-between align-items-center mb-4">
 
-@foreach (var workspace in Model)
-{
     <div>
-        <strong>@workspace.Name</strong>
+        <h2>🦋 Workspaces</h2>
+        <p class="text-muted mb-0">
+            Organize your projects into elegant workspaces.
+        </p>
+    </div>
+
+    <a asp-action="Create" class="btn btn-primary">
+        + New Workspace
+    </a>
+
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+
+        No workspaces have been created yet.
+
+    </div>
+}
+else
+{
+    <div class="row">
+
+        @foreach (var workspace in Model)
+        {
+            <div class="col-md-4 mb-4">
+
+                <div class="card shadow-sm h-100">
+
+                    <div class="card-body">
+
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <h5 class="card-title">
+
+                                @workspace.Icon
+                                @workspace.Name
+
+                            </h5>
+
+                            @if (workspace.IsFavorite)
+                            {
+                                <span title="Favorite">⭐</span>
+                            }
+
+                        </div>
+
+                        <p class="text-muted">
+
+                            @workspace.Description
+
+                        </p>
+
+                        <div class="mt-3">
+
+                            <span class="badge"
+                                  style="background:@workspace.Color">
+
+                                @workspace.Color
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        }
+
     </div>
 }

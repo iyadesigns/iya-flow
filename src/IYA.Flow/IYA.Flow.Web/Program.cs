@@ -1,5 +1,11 @@
 using IYA.Flow.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using IYA.Flow.Application.Interfaces.Repositories;
+using IYA.Flow.Infrastructure.Repositories;
+using IYA.Flow.Application.Interfaces.Services;
+using IYA.Flow.Application.Services;
+using AutoMapper;
+using IYA.Flow.Application.Mappings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +18,15 @@ builder.Services.AddDbContext<IYAFlowDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
 
+//registrar repositorio
+builder.Services.AddScoped<IWorkspaceRepository, WorkspaceRepository>();
+
+//registrar servicio
+builder.Services.AddScoped<IWorkspaceService, WorkspaceService>();
+
+//registrar automapper
+// Registers AutoMapper and scans the Application assembly
+builder.Services.AddAutoMapper(typeof(WorkspaceProfile));
 
 var app = builder.Build();
 

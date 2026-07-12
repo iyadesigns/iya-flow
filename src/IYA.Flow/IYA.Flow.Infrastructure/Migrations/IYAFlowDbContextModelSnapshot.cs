@@ -24,9 +24,11 @@ namespace IYA.Flow.Infrastructure.Migrations
 
             modelBuilder.Entity("IYA.Flow.Core.Entities.Workspace", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Color")
                         .IsRequired()

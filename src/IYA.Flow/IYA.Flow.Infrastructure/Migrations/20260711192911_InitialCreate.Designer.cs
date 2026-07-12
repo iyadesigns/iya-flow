@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IYA.Flow.Infrastructure.Migrations
 {
     [DbContext(typeof(IYAFlowDbContext))]
-    [Migration("20260710143025_AddWorkspaceProperties")]
-    partial class AddWorkspaceProperties
+    [Migration("20260711192911_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,9 +27,11 @@ namespace IYA.Flow.Infrastructure.Migrations
 
             modelBuilder.Entity("IYA.Flow.Core.Entities.Workspace", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Color")
                         .IsRequired()

@@ -4,3 +4,126 @@
     padding: 20px;
     box-shadow: 0 10px 25px rgba(0,0,0,.05);
 }
+.icon-option {
+
+    cursor: pointer;
+
+}
+
+.icon-box {
+
+    width:60px;
+
+    height:60px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border:2px solid #ddd;
+
+    border-radius:12px;
+
+    transition:.25s;
+
+    font-size:22px;
+
+}
+
+.icon-option input:checked + .icon-box{
+
+    border-color:var(--primary);
+
+    background:var(--secondary);
+
+}
+
+/* ===========================
+   Workspace Create
+=========================== */
+
+.workspace-form{
+
+    max-width:850px;
+
+    margin:auto;
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+}
+
+.workspace-header{
+
+    margin-bottom:35px;
+
+}
+
+.workspace-header h2{
+
+    font-weight:700;
+
+}
+
+.workspace-header p{
+
+    color:#888;
+
+}
+
+.icon-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,70px);
+
+    gap:15px;
+
+}
+
+.icon-card{
+
+    width:70px;
+
+    height:70px;
+
+    border:2px solid #e8e8e8;
+
+    border-radius:16px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    background:white;
+
+}
+
+.icon-card:hover{
+
+    border-color:var(--primary);
+
+    transform:translateY(-3px);
+
+}
+
+.icon-option input:checked + .icon-card{
+
+    background:var(--secondary);
+
+    border-color:var(--primary);
+
+}

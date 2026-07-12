@@ -1,59 +1,152 @@
-﻿@model IYA.Flow.Core.Entities.Workspace
+﻿@model IYA.Flow.Application.DTOs.Workspace.CreateWorkspaceDto
 
 @{
-    ViewData["Title"] = "Nuevo Workspace";
+    ViewData["Title"] = "New Workspace";
 }
 
-<div class="container mt-4">
+<div class="workspace-form">
 
-    <h2>Nuevo Workspace</h2>
-    <hr />
+    <div class="workspace-header">
+
+        <h2>Create Workspace</h2>
+
+        <p>
+            Organize your projects inside beautiful workspaces.
+        </p>
+
+    </div>
 
     <form asp-action="Create" method="post">
 
-        <div class="mb-3">
+        <!-- Workspace Name -->
+        <div class="mb-4">
+
             <label asp-for="Name" class="form-label"></label>
-            <input asp-for="Name" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
+
+            <input asp-for="Name"
+                   class="form-control" />
+
+            <span asp-validation-for="Name"
+                  class="text-danger"></span>
+
         </div>
 
-        <div class="mb-3">
-            <label asp-for="Description" class="form-label"></label>
-            <textarea asp-for="Description" class="form-control" rows="4"></textarea>
-            <span asp-validation-for="Description" class="text-danger"></span>
+        <!-- Description -->
+        <div class="mb-4">
+
+            <label asp-for="Description"
+                   class="form-label"></label>
+
+            <textarea asp-for="Description"
+                      rows="4"
+                      class="form-control"></textarea>
+
+            <span asp-validation-for="Description"
+                  class="text-danger"></span>
+
         </div>
 
-        <div class="mb-3">
-            <label asp-for="Color" class="form-label"></label>
-            <input asp-for="Color" type="color" class="form-control form-control-color" />
+        <!-- Color -->
+        <div class="mb-4">
+
+            <label asp-for="Color"
+                   class="form-label"></label>
+
+            <input asp-for="Color"
+                   type="color"
+                   class="form-control form-control-color" />
+
         </div>
 
-        <div class="mb-3">
-            <label asp-for="Icon" class="form-label"></label>
-            <input asp-for="Icon" class="form-control" placeholder="🦋" />
-        </div>
+        <!-- Icon Selector -->
+        <div class="mb-4">
 
-        <div class="form-check mb-3">
-            <input asp-for="IsFavorite" class="form-check-input" />
-            <label asp-for="IsFavorite" class="form-check-label">
-                Marcar como favorito
+            <label class="form-label">
+
+                Workspace icon
+
             </label>
+
+            <div class="icon-grid">
+
+                @{
+                    string[] icons =
+                    {
+                        "folder",
+                        "briefcase",
+                        "rocket",
+                        "star",
+                        "calendar",
+                        "notebook-pen",
+                        "heart",
+                        "graduation-cap"
+                    };
+                }
+
+                @foreach (var icon in icons)
+                {
+                    <label class="icon-option">
+
+                        <input asp-for="Icon"
+                               type="radio"
+                               value="@icon"
+                               class="d-none" />
+
+                        <div class="icon-card">
+
+                            <i data-lucide="@icon"></i>
+
+                        </div>
+
+                    </label>
+                }
+
+            </div>
+
         </div>
 
-        <button type="submit" class="btn btn-primary">
-            Guardar Workspace
-        </button>
+        <!-- Favorite -->
+        <div class="form-check mb-4">
 
-        <a asp-action="Index" class="btn btn-secondary">
-            Cancelar
-        </a>
+            <input asp-for="IsFavorite"
+                   class="form-check-input" />
+
+            <label asp-for="IsFavorite"
+                   class="form-check-label">
+                Mark as favorite
+            </label>
+
+        </div>
+
+        <!-- Buttons -->
+        <div class="d-flex gap-3">
+
+            <button class="btn btn-primary">
+
+                Create Workspace
+
+            </button>
+
+            <a asp-action="Index"
+               class="btn btn-outline-secondary">
+
+                Cancel
+
+            </a>
+
+        </div>
 
     </form>
 
 </div>
 
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+
+        lucide.createIcons();
+
+    </script>
 }
