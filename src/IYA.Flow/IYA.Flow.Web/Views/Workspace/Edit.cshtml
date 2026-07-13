@@ -1,0 +1,104 @@
+﻿@model IYA.Flow.Application.DTOs.Workspace.UpdateWorkspaceDto
+
+@{
+    ViewData["Title"] = "Edit Workspace";
+}
+
+<div class="container mt-4">
+
+    <!-- Page title -->
+    <h2>Edit Workspace</h2>
+
+    <hr />
+
+    <!-- Edit Workspace form -->
+    <form asp-action="Edit" method="post">
+
+        <!-- Hidden Id -->
+        <input asp-for="Id" type="hidden" />
+
+        <!-- Workspace Name -->
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label"></label>
+
+            <input asp-for="Name" class="form-control" />
+
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <!-- Workspace Description -->
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label"></label>
+
+            <textarea asp-for="Description"
+                      class="form-control"
+                      rows="4"></textarea>
+
+            <span asp-validation-for="Description"
+                  class="text-danger"></span>
+        </div>
+
+        <!-- Workspace Color -->
+        <div class="mb-3">
+            <label asp-for="Color" class="form-label"></label>
+
+            <input asp-for="Color"
+                   type="color"
+                   class="form-control form-control-color" />
+
+            <span asp-validation-for="Color"
+                  class="text-danger"></span>
+        </div>
+
+        <!-- Workspace Icon -->
+        <div class="mb-3">
+            <label asp-for="Icon" class="form-label"></label>
+
+            <input asp-for="Icon"
+                   class="form-control"
+                   placeholder="🦋" />
+
+            <span asp-validation-for="Icon"
+                  class="text-danger"></span>
+        </div>
+
+        <!-- Favorite -->
+        <div class="form-check mb-4">
+
+            <input asp-for="IsFavorite"
+                   class="form-check-input" />
+
+            <label asp-for="IsFavorite"
+                   class="form-check-label">
+
+                Mark as favorite
+
+            </label>
+
+        </div>
+
+        <!-- Buttons -->
+        <button type="submit"
+                class="btn btn-primary">
+
+            💾 Save Changes
+
+        </button>
+
+        <a asp-action="Index"
+           class="btn btn-secondary">
+
+            Cancel
+
+        </a>
+
+    </form>
+
+</div>
+
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

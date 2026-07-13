@@ -31,4 +31,9 @@ public interface IWorkspaceService
     /// Deletes a Workspace.
     /// </summary>
     Task DeleteAsync(int id);
+
+    /// <summary>
+    /// Retrieves a workspace for editing.
+    /// </summary>
+    Task<UpdateWorkspaceDto?> GetForUpdateAsync(int id);
 }

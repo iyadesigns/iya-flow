@@ -1,34 +1,31 @@
 ﻿using IYA.Flow.Application.DTOs.Workspace;
 using IYA.Flow.Application.Interfaces.Services;
-using IYA.Flow.Core.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IYA.Flow.Web.Controllers;
 
 /// <summary>
-/// Controller responsible for managing Workspace operations.
-/// Handles requests related to listing and creating workspaces.
+/// Controller responsible for Workspace management.
 /// </summary>
 public class WorkspaceController : Controller
 {
     /// <summary>
-    /// Service that encapsulates the business logic for Workspaces.
+    /// Workspace business service.
     /// </summary>
     private readonly IWorkspaceService _workspaceService;
 
     /// <summary>
-    /// Constructor with Dependency Injection.
+    /// Initializes a new instance of the <see cref="WorkspaceController"/> class.
     /// </summary>
-    /// <param name="workspaceService">Workspace service instance.</param>
+    /// <param name="workspaceService">Workspace service.</param>
     public WorkspaceController(IWorkspaceService workspaceService)
     {
         _workspaceService = workspaceService;
     }
 
     /// <summary>
-    /// Displays the list of all available workspaces.
+    /// Displays all workspaces.
     /// </summary>
-    /// <returns>Workspace list view.</returns>
     public async Task<IActionResult> Index()
     {
         var workspaces = await _workspaceService.GetAllAsync();
@@ -37,34 +34,17 @@ public class WorkspaceController : Controller
     }
 
     /// <summary>
-    /// Displays the form to create a new Workspace.
+    /// Displays the create workspace form.
     /// </summary>
-    /// <returns>Create Workspace view.</returns>
     [HttpGet]
     public IActionResult Create()
     {
-        return View();
+        return View(new CreateWorkspaceDto());
     }
 
     /// <summary>
-    /// Creates a new Workspace.
+    /// Creates a new workspace.
     /// </summary>
-    /// <param name="workspace">Workspace data submitted by the user.</param>
-    /// <returns>Redirects to the Workspace list if successful.</returns>
-    //[HttpPost]
-    //[ValidateAntiForgeryToken]
-    //public async Task<IActionResult> Create(Workspace workspace)
-    //{
-    //    // Validate the submitted model.
-    //    if (!ModelState.IsValid)
-    //        return View(workspace);
-
-    //    // Delegate the creation process to the Service layer.
-    //    await _workspaceService.CreateAsync(workspace);
-
-    //    // Redirect to the Workspace list.
-    //    return RedirectToAction(nameof(Index));
-    //}
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(CreateWorkspaceDto dto)
@@ -73,6 +53,75 @@ public class WorkspaceController : Controller
             return View(dto);
 
         await _workspaceService.CreateAsync(dto);
+
+        return RedirectToAction(nameof(Index));
+    }
+
+    /// <summary>
+    /// Displays the edit form.
+    /// </summary>
+    [HttpGet]
+    public async Task<IActionResult> Edit(int id)
+    {
+        var dto = await _workspaceService.GetForUpdateAsync(id);
+
+        if (dto is null)
+            return NotFound();
+
+        return View(dto);
+    }
+
+    /// <summary>
+    /// Updates an existing workspace.
+    /// </summary>
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit(UpdateWorkspaceDto dto)
+    {
+        if (!ModelState.IsValid)
+            return View(dto);
+
+        await _workspaceService.UpdateAsync(dto);
+
+        return RedirectToAction(nameof(Index));
+    }
+
+    /// <summary>
+    /// Displays workspace details.
+    /// </summary>
+    [HttpGet]
+    public async Task<IActionResult> Details(int id)
+    {
+        var workspace = await _workspaceService.GetByIdAsync(id);
+
+        if (workspace is null)
+            return NotFound();
+
+        return View(workspace);
+    }
+
+    /// <summary>
+    /// Displays the delete confirmation page.
+    /// </summary>
+    [HttpGet]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var workspace = await _workspaceService.GetByIdAsync(id);
+
+        if (workspace is null)
+            return NotFound();
+
+        return View(workspace);
+    }
+
+    /// <summary>
+    /// Deletes a workspace.
+    /// </summary>
+    [HttpPost, ActionName("Delete")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DeleteConfirmed(int id)
+    {
+        await _workspaceService.DeleteAsync(id);
 
         return RedirectToAction(nameof(Index));
     }

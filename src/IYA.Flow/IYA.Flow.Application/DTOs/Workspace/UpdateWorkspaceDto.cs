@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using IYA.Flow.Core.Constants;
 
 namespace IYA.Flow.Application.DTOs.Workspace;
 
@@ -7,18 +8,37 @@ namespace IYA.Flow.Application.DTOs.Workspace;
 /// </summary>
 public class UpdateWorkspaceDto
 {
+    /// <summary>
+    /// Workspace identifier.
+    /// </summary>
     public int Id { get; set; }
 
-    [Required]
+    /// <summary>
+    /// Workspace name.
+    /// </summary>
+    [Required(ErrorMessage = "Workspace name is required.")]
     [StringLength(100)]
     public string Name { get; set; } = string.Empty;
 
+    /// <summary>
+    /// Workspace description.
+    /// </summary>
     [StringLength(500)]
     public string? Description { get; set; }
 
-    public string Color { get; set; } = string.Empty;
+    /// <summary>
+    /// Workspace color.
+    /// </summary>
+    public string Color { get; set; } = WorkspaceDefaults.DefaultColor;
 
-    public string? Icon { get; set; }
+    /// <summary>
+    /// Workspace icon.
+    /// </summary>
+    [StringLength(50)]
+    public string Icon { get; set; } = WorkspaceDefaults.DefaultIcon;
 
+    /// <summary>
+    /// Indicates whether the workspace is marked as favorite.
+    /// </summary>
     public bool IsFavorite { get; set; }
 }

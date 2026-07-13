@@ -19,6 +19,8 @@ public class WorkspaceProfile : Profile
 
         CreateMap<UpdateWorkspaceDto, Workspace>();
 
+        CreateMap<Workspace, UpdateWorkspaceDto>();
+
         // Entity -> DTO
         CreateMap<Workspace, WorkspaceDto>();
     }

@@ -93,4 +93,19 @@ public class WorkspaceService : IWorkspaceService
         await _repository.DeleteAsync(id);
         await _repository.SaveChangesAsync();
     }
+
+    /// <summary>
+    /// Retrieves a workspace ready for editing.
+    /// </summary>
+    /// <param name="id">Workspace identifier.</param>
+    /// <returns>Update DTO or null if it does not exist.</returns>
+    public async Task<UpdateWorkspaceDto?> GetForUpdateAsync(int id)
+    {
+        var workspace = await _repository.GetByIdAsync(id);
+
+        if (workspace is null)
+            return null;
+
+        return _mapper.Map<UpdateWorkspaceDto>(workspace);
+    }
 }

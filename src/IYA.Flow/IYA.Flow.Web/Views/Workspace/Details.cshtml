@@ -1,0 +1,92 @@
+﻿@model IYA.Flow.Application.DTOs.Workspace.WorkspaceDto
+
+@{
+    ViewData["Title"] = "Workspace Details";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow-sm">
+
+        <div class="card-header">
+
+            <h3>
+
+                <i data-lucide="@Model.Icon"></i>
+
+                @Model.Name
+
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <dl class="row">
+
+                <dt class="col-sm-3">
+                    Description
+                </dt>
+
+                <dd class="col-sm-9">
+                    @Model.Description
+                </dd>
+
+                <dt class="col-sm-3">
+                    Color
+                </dt>
+
+                <dd class="col-sm-9">
+
+                    <span class="badge rounded-pill"
+                          style="background:@Model.Color">
+
+                        @Model.Color
+
+                    </span>
+
+                </dd>
+
+                <dt class="col-sm-3">
+                    Favorite
+                </dt>
+
+                <dd class="col-sm-9">
+
+                    @(Model.IsFavorite ? "⭐ Yes" : "No")
+
+                </dd>
+
+            </dl>
+
+        </div>
+
+        <div class="card-footer">
+
+            <a asp-action="Edit"
+               asp-route-id="@Model.Id"
+               class="btn btn-warning">
+
+                Edit
+
+            </a>
+
+            <a asp-action="Index"
+               class="btn btn-secondary">
+
+                Back
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts
+{
+    <script>
+        lucide.createIcons();
+    </script>
+}
