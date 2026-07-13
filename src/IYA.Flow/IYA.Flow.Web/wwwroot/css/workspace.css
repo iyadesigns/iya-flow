@@ -127,3 +127,18 @@
     border-color:var(--primary);
 
 }
+
+/* ===============================
+   Workspace Color Indicator
+================================== */
+
+.workspace-color {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: inline-block;
+    border: 2px solid #ffffff;
+    box-shadow: 0 2px 6px rgba(0,0,0,.15);
+
+    margin-bottom: 18px;
+}
